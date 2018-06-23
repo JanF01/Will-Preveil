@@ -7,7 +7,7 @@ var l=0;
 var colors = [];
 var canvasOpacity=255;
 var groundHeight;
-
+var playerPos = 0;
 
 function preload(){
   timesFont = loadFont('fonts/goodx.ttf');

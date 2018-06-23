@@ -7,7 +7,7 @@ class Player{
        this.acc = createVector(0,0);
        this.c = color(255);
        this.air=0;
-       this.grafic = [loadImage('pics/player1.png'),loadImage('pics/player2.png'),loadImage('pics/player3.png'),loadImage('pics/player4.png'),loadImage('pics/player5.png'),loadImage('pics/player6.png')];
+       this.grafic = [[loadImage('pics/player1left.png'),loadImage('pics/player1right.png')],loadImage('pics/player2.png'),loadImage('pics/player3.png'),loadImage('pics/player4.png'),loadImage('pics/player5.png'),loadImage('pics/player6.png')];
        this.look = 0;
    }
    spawn(){
@@ -22,12 +22,27 @@ class Player{
      fill(this.c);
      imageMode(CENTER);
      image(this.grafic[this.look],this.pos.x,this.pos.y,this.size,this.size*1.03);
+
+     if(this.vel.x<=0)this.direction=0;
+     else this.direction =1;
+
+  if(this.look==0){
+   image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size,this.size*1.03);
+  }
+   else{
+   image(this.grafic[this.look],this.pos.x,this.pos.y,this.size,this.size*1.03);
+    }
    }
    move(){
      this.vel.add(this.acc);
      this.pos.add(this.vel);
 
      this.acc.mult(0);
+
+
+          if(player.pos.x>canvas.width/2){
+            playerPos=player.pos.x-canvas.width/2;
+          } else playerPos=0;
    }
 
    applyForce(v){

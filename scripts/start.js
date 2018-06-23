@@ -36,28 +36,26 @@ function play(){
   text("LEVEL:  "+l,canvas.width/10,canvas.height/1.055);
 
 
-  showColors();
-
-        if(player.pos.x<canvas.width/10) colorButton.cheak();
-        colorButton.draw();
-
-
-      player.draw();
-    let gravity = createVector(0,canvas.height/1000);
-    player.applyForce(gravity);
-
-    if(keyIsDown('65') || keyIsDown(LEFT_ARROW)){
-      player.vel.x=-canvas.width/300;
-    }
-    if(keyIsDown('68') || keyIsDown(RIGHT_ARROW)){
-      player.vel.x=canvas.width/300;
-    }
-
-    if(player.pos.x<canvas.width/10) colorButton.cheak();
-    colorButton.draw();
-
   player.move();
   player.corners();
+  push();
+  translate(-playerPos,0);
+  showColors();
+
+  if(player.pos.x<canvas.width/10) colorButton.cheak();
+  colorButton.draw();
+
+     player.draw();
+        let gravity = createVector(0,canvas.height/1000);
+        player.applyForce(gravity);
+      if(keyIsDown('65') || keyIsDown(LEFT_ARROW)){
+        player.vel.x=-canvas.width/300;
+      }
+      if(keyIsDown('68') || keyIsDown(RIGHT_ARROW)){
+        player.vel.x=canvas.width/300;
+      }
+  pop();
+
   if(player.vel.y==0 && (player.air==1 || player.air==2)){
      player.vel.x=0;
      player.air=0;
