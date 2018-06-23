@@ -21,7 +21,6 @@ class Player{
      noStroke();
      fill(this.c);
      imageMode(CENTER);
-     image(this.grafic[this.look],this.pos.x,this.pos.y,this.size,this.size*1.03);
 
      if(this.vel.x<=0)this.direction=0;
      else this.direction =1;
