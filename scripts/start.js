@@ -12,7 +12,6 @@ function startGame(){
   colorButton = new ColorButton();
 }
 
-
 function showColors(){
   if(player1.pos.y<canvas.height/2 || player2.pos.y<canvas.height/2){
    for(let i=0;i<colors.length;i++){
