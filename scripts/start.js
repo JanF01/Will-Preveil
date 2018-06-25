@@ -1,4 +1,4 @@
-var player;
+var player,player2;
 var colorButton;
 
 function startGame(){
@@ -8,6 +8,7 @@ function startGame(){
   colors[3] = new Color(canvas.width/6*4,color(191, 214, 65),4);
   colors[4] = new Color(canvas.width/6*5,color(192, 171, 142),5);
   player = new Player();
+  player2 = new Player();
   colorButton = new ColorButton();
 }
 
@@ -38,21 +39,30 @@ function play(){
 
   player.move();
   player.corners();
+  player2.move();
+  player2.corners();
   push();
   translate(-playerPos,0);
   showColors();
 
-  if(player.pos.x<canvas.width/10) colorButton.cheak();
+  if(player.pos.x<canvas.width/10) colorButton.cheak(player);
+    if(player2.pos.x<canvas.width/10) colorButton.cheak(player2);
   colorButton.draw();
 
      player.draw();
         let gravity = createVector(0,canvas.height/1000);
         player.applyForce(gravity);
-      if(keyIsDown('65') || keyIsDown(LEFT_ARROW)){
+      if(keyIsDown(LEFT_ARROW)){
         player.vel.x=-canvas.width/300;
       }
-      if(keyIsDown('68') || keyIsDown(RIGHT_ARROW)){
+      if(keyIsDown(RIGHT_ARROW)){
         player.vel.x=canvas.width/300;
+      }
+   if(keyIsDown('65')){
+        player2.vel.x=-canvas.width/300;
+      }
+      if(keyIsDown('68')){
+        player2.vel.x=canvas.width/300;
       }
   pop();
 
@@ -60,24 +70,39 @@ function play(){
      player.vel.x=0;
      player.air=0;
   }
+    if(player2.vel.y==0 && (player2.air==1 || player2.air==2)){
+     player2.vel.x=0;
+     player2.air=0;
+  }
 }
 
 
 function keyPressed(e){
 
-  if(e.keyCode == '87' || e.keyCode == '38' || e.keyCode=='32'){
+  if(e.keyCode == '38'){
     player.jump();
   }
-  if(e.keyCode == '83' || e.keyCode == '40'){
+  if(e.keyCode == '87'){
+    player2.jump();
+  }
+  if(e.keyCode == '40'){
     player.fall();
+  }
+   if(e.keyCode == '83'){
+    player2.fall();
   }
 
 }
 function keyReleased(e){
 
     if(player.vel.y==0){
-    if(e.keyCode== '65' || e.keyCode=='37' || e.keyCode == '68' || e.keyCode== '39'){
+    if(e.keyCode=='37' || e.keyCode== '39'){
       player.stopX();
+    }
+  }
+     if(player2.vel.y==0){
+    if(e.keyCode== '65' || e.keyCode == '68'){
+      player2.stopX();
     }
   }
 
