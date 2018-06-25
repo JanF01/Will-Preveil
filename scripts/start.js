@@ -14,17 +14,17 @@ function startGame(){
 
 
 function showColors(){
-  if(player1.pos.y>canvas.height/3 || player2.pos.y>canvas.height/3){
-  for(let i=0;i<colors.length;i++){
-    colors[i].draw();
-  }
-  }
-  else{
+  if(player1.pos.y<canvas.height/2 || player2.pos.y<canvas.height/2){
    for(let i=0;i<colors.length;i++){
       colors[i].draw();
       colors[i].cheak(player);
      colors[i].cheak(player2);
     }
+  }
+  else{
+      for(let i=0;i<colors.length;i++){
+    colors[i].draw();
+     }    
   }
 
 }
