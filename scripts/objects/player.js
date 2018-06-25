@@ -1,7 +1,7 @@
 class Player{
 
-   constructor(){
-       this.pos = createVector(canvas.width/2,canvas.height/1.5);
+   constructor(x){
+       this.pos = createVector(x,canvas.height/1.5);
        this.size = canvas.height/10;
        this.vel = createVector(0,0);
        this.acc = createVector(0,0);
