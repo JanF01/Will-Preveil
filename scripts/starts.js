@@ -13,7 +13,7 @@ function startGame(){
 }
 
 function showColors(){
-  if(player1.pos.y<canvas.height/2 || player2.pos.y<canvas.height/2){
+  if(player.pos.y<canvas.height/2 || player2.pos.y<canvas.height/2){
    for(let i=0;i<colors.length;i++){
       colors[i].draw();
       colors[i].cheak(player);
@@ -50,7 +50,7 @@ function play(){
     if(player2.pos.x<canvas.width/10) colorButton.cheak(player2);
   colorButton.draw();
 
-     player1.draw();
+     player.draw();
       player2.draw();
     
         let gravity = createVector(0,canvas.height/1000);
