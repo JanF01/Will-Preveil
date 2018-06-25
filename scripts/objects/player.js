@@ -39,9 +39,16 @@ class Player{
      this.acc.mult(0);
 
 
-          if(player.pos.x>canvas.width/2){
+          if(player.pos.x>player2.pos.x){
+              if(player.pos.x>canvas.width/2){
             playerPos=player.pos.x-canvas.width/2;
-          } else playerPos=0;
+              }else playerPos=0;
+          }
+          if(player2.pos.x>player.pos.x){
+              if(player2.pos.x>canvas.width/2){
+            playerPos=player2.pos.x-canvas.width/2;
+              }else playerPos=0;
+          }
    }
 
    applyForce(v){
