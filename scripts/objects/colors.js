@@ -13,11 +13,11 @@ class Color{
      ellipse(this.pos.x,this.pos.y,this.s,this.s);
    }
 
-   cheak(){
-     if(dist(this.pos.x,this.pos.y,player.pos.x,player.pos.y)<this.s/2+player.size/2){
-       player.look = this.i;
-       player.vel.x=0;
-       player.acc.x=0;
+   cheak(p){
+     if(dist(this.pos.x,this.pos.y,p.pos.x,p.pos.y)<this.s/2+p.size/2){
+       p.look = this.i;
+       p.vel.x=0;
+       p.acc.x=0;
      }
    }
 
