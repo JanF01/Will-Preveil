@@ -7,8 +7,8 @@ function startGame(){
   colors[2] = new Color(canvas.width/6*3,color(233, 75, 60),3);
   colors[3] = new Color(canvas.width/6*4,color(191, 214, 65),4);
   colors[4] = new Color(canvas.width/6*5,color(192, 171, 142),5);
-  player = new Player();
-  player2 = new Player();
+  player = new Player(canvas.width/2-canvas.height/7);
+  player2 = new Player(canvas.width/2);
   colorButton = new ColorButton();
 }
 
