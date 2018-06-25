@@ -67,10 +67,6 @@ class Player{
        this.pos.x=this.size/2;
        this.stopX();
      }
-     if(this.pos.x>canvas.width-this.size/2){
-       this.pos.x=canvas.width-this.size/2;
-       this.stopX();
-     }
    }
 
 
