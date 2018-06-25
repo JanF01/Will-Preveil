@@ -50,9 +50,12 @@ function play(){
     if(player2.pos.x<canvas.width/10) colorButton.cheak(player2);
   colorButton.draw();
 
-     player.draw();
+     player1.draw();
+      player2.draw();
+    
         let gravity = createVector(0,canvas.height/1000);
-        player.applyForce(gravity);
+        player1.applyForce(gravity);
+     player2.applyForce(gravity);
       if(keyIsDown(LEFT_ARROW)){
         player.vel.x=-canvas.width/300;
       }
