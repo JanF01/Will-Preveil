@@ -14,7 +14,7 @@ function startGame(){
 
 
 function showColors(){
-  if(player.pos.y>canvas.height/3)
+  if(player1.pos.y>canvas.height/3 || player2.pos.y>canvas.height/3){
   for(let i=0;i<colors.length;i++){
     colors[i].draw();
   }
@@ -24,6 +24,7 @@ function showColors(){
       colors[i].cheak(player);
      colors[i].cheak(player2);
     }
+  }
   }
 
 }
