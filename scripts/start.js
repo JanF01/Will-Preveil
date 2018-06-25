@@ -21,7 +21,8 @@ function showColors(){
   else{
    for(let i=0;i<colors.length;i++){
       colors[i].draw();
-      colors[i].cheak();
+      colors[i].cheak(player);
+     colors[i].cheak(player2);
     }
   }
 
