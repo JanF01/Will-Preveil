@@ -55,16 +55,16 @@ class ColorButton{
 
 
  }
-   cheak(){
-     let players = player.size;
-     let playerx = player.pos.x;
-     let playery = player.pos.y;
+   cheak(p){
+     let players = p.size;
+     let playerx = p.pos.x;
+     let playery = p.pos.y;
 
       if(canvas.width/60+players/2>playerx){
          if(this.pos.y-players/2<=playery && this.pos.y+this.h+players/2>=playery){
-           player.pos.x = canvas.width/60+players/2;
+           p.pos.x = canvas.width/60+players/2;
 
-           player.vel.x*=-1;
+           p.vel.x*=-1;
 
            if(playery>this.pos.y+this.h/8 && playery<this.pos.y+this.h/1.1325){
              if(!this.working){
