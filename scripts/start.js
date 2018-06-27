@@ -61,7 +61,7 @@ function play(){
 
   for(let i=0;i<blocks.length;i++){
 blocks[i].draw();
-for(let i=0;i<player.length;i++){
+for(let i=0;i<players.length;i++){
 blocks[i].cheak(players[i]);
 blocks[i].changePos(players[i]);
 }
