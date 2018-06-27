@@ -97,7 +97,7 @@ class Player{
 
   fall(){
     let v5 = createVector(0,canvas.height/50);
-    player.applyForce(v5);
+    this.applyForce(v5);
   }
 
 
