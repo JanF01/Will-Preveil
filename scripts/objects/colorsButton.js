@@ -13,6 +13,7 @@ class ColorButton{
 
      textSize(canvas.height/37)
      stroke(255);
+      strokeWeight(2);
      fill(33,48,89);
      let h = canvas.height/7;
      textAlign(CENTER);
