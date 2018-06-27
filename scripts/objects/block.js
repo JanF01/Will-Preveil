@@ -23,7 +23,7 @@ class Block{
     cheak(p){
 
 
-      if(abs(p.pos.x-p.pos.x)-p.size/2<=bloc.width/2){
+      if(abs(p.pos.x-this.pos.x)-p.size/2<=bloc.width/2){
         let posX = p.pos.x;
         let posY = p.pos.y;
         let velX = p.vel.x;
