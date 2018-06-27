@@ -54,7 +54,7 @@ class Block{
                  p.on=false;
                    p.which=0;
              }
-             else if(!air || player.air==3){
+             else if(!air || p.air==3){
                p.on=false;
                  p.which=0;
                if(posX>this.pos.x && abs(velX)<0.3) p.vel.x=canvas.width/700;
