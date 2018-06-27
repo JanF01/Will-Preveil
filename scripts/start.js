@@ -17,7 +17,7 @@ function startGame(){
 }
 
 function showColors(){
-  if(player.pos.y<canvas.height/2 || player2.pos.y<canvas.height/2){
+  if(players[0].pos.y<canvas.height/2 || players[1].pos.y<canvas.height/2){
    for(let i=0;i<colors.length;i++){
       colors[i].draw();
       colors[i].cheak(players[0]);
