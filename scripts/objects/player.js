@@ -41,14 +41,14 @@ class Player{
      this.acc.mult(0);
 
 
-          if(player.pos.x>player2.pos.x){
-              if(player.pos.x>canvas.width/2){
-            playerPos=player.pos.x-canvas.width/2;
+          if(players[0].pos.x>players[1].pos.x){
+              if(players[0].pos.x>canvas.width/2){
+            playerPos=players[0].pos.x-canvas.width/2;
               }else playerPos=0;
           }
-          if(player2.pos.x>player.pos.x){
-              if(player2.pos.x>canvas.width/2){
-            playerPos=player2.pos.x-canvas.width/2;
+          if(players[0].pos.x>players[1].pos.x){
+              if(players[1].pos.x>canvas.width/2){
+            playerPos=players[1].pos.x-canvas.width/2;
               }else playerPos=0;
           }
    }
