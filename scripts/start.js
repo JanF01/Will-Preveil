@@ -34,8 +34,7 @@ function showColors(){
 
 function play(){
   noStroke();
-  fill(16,17,25);
-  rect(0,0,canvas.width,canvas.height);
+  background(16,17,25);
   fill(255);
   rect(0,groundHeight,canvas.width,canvas.height/500);
   textSize(canvas.height/30);
