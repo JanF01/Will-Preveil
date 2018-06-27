@@ -57,7 +57,8 @@ class ColorButton{
    }
    else if(!this.state && groundHeight<canvas.height/1.125){
       groundHeight+=canvas.height*0.001;
-      player.pos.y = groundHeight-player.size/2;
+      players[0].pos.y = groundHeight-players[0].size/2;
+      players[1].pos.y = groundHeight-players[1].size/2;
    }
 
 
