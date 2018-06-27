@@ -52,6 +52,13 @@ function play(){
 
   push();
   translate(-playerPos,0);
+  
+  textSize(canvas.height/25)
+  stroke(255);
+  fill(12,20,37);
+  text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.2,canvas.height/8);
+  pop();
+  
   showColors();
 
   if(players[0].pos.x<canvas.width/10) colorButton.cheak(players[0]);
@@ -94,12 +101,6 @@ blocks[i].changePos(players[j]);
       }
         }
 
-
-  textSize(canvas.height/25)
-  stroke(255);
-  fill(12,20,37);
-  text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.2,canvas.height/8);
-  pop();
 
  for(let i=0;i<players.length;i++){
   if(players[i].vel.y==0 && (players[i].air==1 || players[i].air==2 || players[i].air==3)){
