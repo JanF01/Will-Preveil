@@ -53,10 +53,10 @@ function play(){
   push();
   translate(-playerPos,0);
   
-  textSize(canvas.height/25)
+  textSize(canvas.height/20)
   stroke(255);
   fill(12,20,37);
-  text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.2,canvas.height/8);
+  text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.13,canvas.height/7);
   pop();
   
   showColors();
