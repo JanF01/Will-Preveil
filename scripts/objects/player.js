@@ -9,6 +9,8 @@ class Player{
        this.air=0;
        this.grafic = [[loadImage('pics/player1left.png'),loadImage('pics/player1right.png')],loadImage('pics/player2.png'),loadImage('pics/player3.png'),loadImage('pics/player4.png'),loadImage('pics/player5.png'),loadImage('pics/player6.png')];
        this.look = 0;
+       this.on = false;
+       this.which = 0;
    }
    spawn(){
      this.pos = createVector(canvas.width/2,canvas.height/1.5);

@@ -7,10 +7,19 @@ class ColorButton{
       this.h = canvas.height/7;
       this.change = 1;
       this.arrows = loadImage('pics/arrows.png');
+      this.text = ["C","H","A","N","G","E"," ","C","O","L","O","R"];
    }
    draw(){
 
-
+     textSize(canvas.height/37)
+     stroke(255);
+     fill(12,20,37);
+     let h = canvas.height/7;
+     textAlign(CENTER);
+     for(let i=0;i<this.text.length;i++){
+        text(this.text[i],canvas.height/50,h);
+        h+=canvas.height/32;
+     }
 
 
      fill(255);

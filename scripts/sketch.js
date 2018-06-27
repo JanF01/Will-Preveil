@@ -8,9 +8,11 @@ var colors = [];
 var canvasOpacity=255;
 var groundHeight;
 var playerPos = 0;
+var bloc;
 
 function preload(){
   timesFont = loadFont('fonts/goodx.ttf');
+  bloc = loadImage('pics/block.png');
 }
 
 function setup(){

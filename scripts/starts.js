@@ -1,5 +1,6 @@
-var player,player2;
+var players = [];
 var colorButton;
+var blocks = [];
 
 function startGame(){
   colors[0] = new Color(canvas.width/6,color(0, 165, 145),1);
@@ -7,23 +8,26 @@ function startGame(){
   colors[2] = new Color(canvas.width/6*3,color(233, 75, 60),3);
   colors[3] = new Color(canvas.width/6*4,color(191, 214, 65),4);
   colors[4] = new Color(canvas.width/6*5,color(192, 171, 142),5);
-  player = new Player(canvas.width/2-canvas.height/7);
-  player2 = new Player(canvas.width/2);
+  players[0] = new Player(canvas.width/2-canvas.height/7);
+  players[1] = new Player(canvas.width/2);
   colorButton = new ColorButton();
+  blocks[0] = new Block(canvas.width*0.8,canvas.height/1.4,1);
+  blocks[1] = new Block(canvas.width*1.15,canvas.height/1.65,2);
+  blocks[2] = new Block(canvas.width*1.4,canvas.height/1.9,3);
 }
 
 function showColors(){
   if(player.pos.y<canvas.height/2 || player2.pos.y<canvas.height/2){
    for(let i=0;i<colors.length;i++){
       colors[i].draw();
-      colors[i].cheak(player);
-     colors[i].cheak(player2);
+      colors[i].cheak(players[0]);
+     colors[i].cheak(players[1]);
     }
   }
   else{
       for(let i=0;i<colors.length;i++){
     colors[i].draw();
-     }    
+     }
   }
 
 }
@@ -38,76 +42,105 @@ function play(){
   text("LEVEL:  "+l,canvas.width/10,canvas.height/1.055);
 
 
-  player.move();
-  player.corners();
-  player2.move();
-  player2.corners();
+
+ for(let i=0;i<players.length;i++){
+  players[i].move();
+  players[i].corners();
+}
+
+
+
   push();
   translate(-playerPos,0);
   showColors();
 
-  if(player.pos.x<canvas.width/10) colorButton.cheak(player);
-    if(player2.pos.x<canvas.width/10) colorButton.cheak(player2);
+  if(players[0].pos.x<canvas.width/10) colorButton.cheak(players[0]);
+    if(players[1].pos.x<canvas.width/10) colorButton.cheak(players[1]);
+
   colorButton.draw();
 
-     player.draw();
-      player2.draw();
-    
+  for(let i=0;i<blocks.length;i++){
+blocks[i].draw();
+for(let i=0;i<player.length;i++){
+blocks[i].cheak(players[i]);
+blocks[i].changePos(players[i]);
+}
+}
+
+     players[0].draw();
+      players[1].draw();
+
         let gravity = createVector(0,canvas.height/1000);
-        player.applyForce(gravity);
-     player2.applyForce(gravity);
+        if(!players[0].on || players[0].air>0) players[0].applyForce(gravity);
+        if(!players[1].on || players[1].air>0) players[1].applyForce(gravity);
+
+        if(players[0].air!=3){
       if(keyIsDown(LEFT_ARROW)){
-        player.vel.x=-canvas.width/300;
+        players[0].vel.x=-canvas.width/300;
       }
       if(keyIsDown(RIGHT_ARROW)){
-        player.vel.x=canvas.width/300;
+        players[0].vel.x=canvas.width/300;
       }
+    }
+        if(players[1].air!=3){
    if(keyIsDown('65')){
-        player2.vel.x=-canvas.width/300;
+        players[1].vel.x=-canvas.width/300;
       }
       if(keyIsDown('68')){
-        player2.vel.x=canvas.width/300;
+        players[1].vel.x=canvas.width/300;
       }
+        }
+
+
+  textSize(canvas.height/25)
+  stroke(255);
+  fill(12,20,37);
+  text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.2,canvas.height/8);
   pop();
 
-  if(player.vel.y==0 && (player.air==1 || player.air==2)){
-     player.vel.x=0;
-     player.air=0;
+ for(let i=0;i<players.length;i++){
+  if(players[i].vel.y==0 && (players[i].air==1 || players[i].air==2 || players[i].air==3)){
+     players[i].vel.x=0;
+     players[i].air=0;
   }
-    if(player2.vel.y==0 && (player2.air==1 || player2.air==2)){
-     player2.vel.x=0;
-     player2.air=0;
-  }
+}
+
 }
 
 
 function keyPressed(e){
 
   if(e.keyCode == '38'){
-    player.jump();
+    players[0].jump();
   }
   if(e.keyCode == '87'){
-    player2.jump();
+    players[1].jump();
   }
   if(e.keyCode == '40'){
-    player.fall();
+    players[0].fall();
   }
    if(e.keyCode == '83'){
-    player2.fall();
+    players[1].fall();
   }
 
 }
 function keyReleased(e){
 
-    if(player.vel.y==0){
+    if(players[0].vel.y==0){
     if(e.keyCode=='37' || e.keyCode== '39'){
-      player.stopX();
+      players[0].stopX();
     }
   }
-     if(player2.vel.y==0){
+     if(players[1].vel.y==0){
     if(e.keyCode== '65' || e.keyCode == '68'){
-      player2.stopX();
+      players[1].stopX();
     }
   }
 
+}
+
+function mousePressed(){
+  for(let i=0;i<blocks.length;i++){
+     blocks[i].bind();
+  }
 }
