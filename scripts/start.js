@@ -71,6 +71,9 @@ blocks[i].changePos(players[j]);
       players[1].draw();
 
         let gravity = createVector(0,canvas.height/1000);
+        console.log("on: "+player[0].on);
+        console.log("air: "+player[0].air);
+  
         if(!players[0].on || players[0].air>0) players[0].applyForce(gravity);
         if(!players[1].on || players[1].air>0) players[1].applyForce(gravity);
 
