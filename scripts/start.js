@@ -56,7 +56,7 @@ function play(){
   textSize(canvas.height/20)
   stroke(255);
   strokeWeight(2);
-  fill(12,20,37);
+  fill(190,200,255);
   text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.05,canvas.height/7);
   showColors();
 
