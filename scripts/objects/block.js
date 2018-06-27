@@ -35,8 +35,8 @@ class Block{
            if(abs(posY-this.pos.y)<=bHeight/2+pSize/2){
              if(posY-this.pos.y<-pSize/2 && abs(posX-this.pos.x)<bWidth/2){
                p.vel.y=0;
-               players[i].on=true;
-               players[i].which=thid.id;
+               p.on=true;
+               p.which=this.id;
                if(air==1 ||  air==2){
                p.air=0;
                p.vel.x=0;
@@ -45,32 +45,32 @@ class Block{
              else if(posX<=this.pos.x-bWidth/2-pSize/2+velX){
                p.pos.x = this.pos.x-bWidth/2-pSize/2;
                     p.vel.x*=-1;
-                    players[i].on=false;
-                    players[i].which=0;
+                    p.on=false;
+                    p.which=0;
              }
              else if(posX>=this.pos.x+bWidth/2+pSize/2+velX){
                  p.vel.x*=-1;
                p.pos.x = this.pos.x+bWidth/2+pSize/2;
-                 players[i].on=false;
-                   players[i].which=0;
+                 p.on=false;
+                   p.which=0;
              }
              else if(!air || player.air==3){
-               players[i].on=false;
-                 players[i].which=0;
+               p.on=false;
+                 p.which=0;
                if(posX>this.pos.x && abs(velX)<0.3) p.vel.x=canvas.width/700;
                else if(posX<this.pos.x && abs(velX)<0.3) p.vel.x=-canvas.width/700;
                p.air=3;
              }
              else{
               p.vel.mult(-1);
-                 players[i].on=false;
-                   players[i].which=0;
+                 p.on=false;
+                   p.which=0;
              }
            }
       }
       else{
-       players[i].on=false;
-         players[i].which=0;
+       p.on=false;
+         p.which=0;
       }
     }
 
