@@ -33,7 +33,8 @@ class Block{
         let air = p.air;
 
            if(abs(posY-this.pos.y)<=bHeight/2+pSize/2){
-             if(posY-this.pos.y<-pSize/2 && abs(posX-this.pos.x)<bWidth/2){
+             if(posY-this.pos.y<-bHeight/2 && abs(posX-this.pos.x)<bWidth/2){
+               p.pos.y=this.pos.y-pSize/2-bHeight/2;
                p.vel.y=0;
                p.on=true;
                p.which=this.id;
@@ -57,8 +58,6 @@ class Block{
              else if(!air || p.air==3){
                p.on=false;
                  p.which=0;
-               if(posX>this.pos.x && abs(velX)<0.3) p.vel.x=canvas.width/700;
-               else if(posX<this.pos.x && abs(velX)<0.3) p.vel.x=-canvas.width/700;
                p.air=3;
              }
              else{
