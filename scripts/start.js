@@ -8,8 +8,8 @@ function startGame(){
   colors[2] = new Color(canvas.width/6*3,color(233, 75, 60),3);
   colors[3] = new Color(canvas.width/6*4,color(191, 214, 65),4);
   colors[4] = new Color(canvas.width/6*5,color(192, 171, 142),5);
-  players[0] = new Player(canvas.width/2-canvas.height/7);
-  players[1] = new Player(canvas.width/2);
+  players[0] = new Player();
+  players[1] = new Player();
   colorButton = new ColorButton();
   blocks[0] = new Block(canvas.width*0.8,canvas.height/1.4,1);
   blocks[1] = new Block(canvas.width*1.15,canvas.height/1.65,2);
