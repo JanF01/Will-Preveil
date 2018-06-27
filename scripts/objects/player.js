@@ -46,7 +46,7 @@ class Player{
             playerPos=players[0].pos.x-canvas.width/2;
               }else playerPos=0;
           }
-          if(players[0].pos.x>players[1].pos.x){
+          if(players[1].pos.x>players[0].pos.x){
               if(players[1].pos.x>canvas.width/2){
             playerPos=players[1].pos.x-canvas.width/2;
               }else playerPos=0;
