@@ -55,8 +55,9 @@ function play(){
   
   textSize(canvas.height/20)
   stroke(255);
+  strokeWeight(2);
   fill(12,20,37);
-  text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.13,canvas.height/7);
+  text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.05,canvas.height/7);
   showColors();
 
   if(players[0].pos.x<canvas.width/10) colorButton.cheak(players[0]);
