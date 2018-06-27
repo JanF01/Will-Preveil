@@ -57,8 +57,6 @@ function play(){
   stroke(255);
   fill(12,20,37);
   text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.13,canvas.height/7);
-  pop();
-  
   showColors();
 
   if(players[0].pos.x<canvas.width/10) colorButton.cheak(players[0]);
@@ -98,7 +96,7 @@ blocks[i].changePos(players[j]);
       }
         }
 
-
+    pop();
  for(let i=0;i<players.length;i++){
   if(players[i].vel.y==0 && (players[i].air==1 || players[i].air==2 || players[i].air==3)){
      players[i].vel.x=0;
