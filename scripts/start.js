@@ -8,7 +8,7 @@ var playerPos=0,playerPosY=0;
 function startGame() {
   beginGame = true;
   
-  createSkins(skinP.length,skinP,2,0.64);
+  createSkins(skinP.length,skinP);
   createPlayer();
   createButton();
 
