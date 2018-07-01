@@ -7,20 +7,22 @@ class ColorButton{
       this.h = canvas.height/7;
       this.change = 1;
       this.arrows = loadImage('pics/arrows.png');
-      this.text = ["C","H","A","N","G","E"," ","C","O","L","O","R"];
+      this.text = ["C","H","A","N","G","E"," ","T","H","E"," ","S","K","I","N"];
    }
    draw(){
+
 
      textSize(canvas.height/37)
      stroke(255);
      fill(12,20,37);
-     let h = canvas.height/7;
+     let h = canvas.height/25;
      textAlign(CENTER);
      for(let i=0;i<this.text.length;i++){
         text(this.text[i],canvas.height/50,h);
         h+=canvas.height/32;
      }
 
+     rectMode(CORNER);
 
      fill(255);
      noStroke();
@@ -28,7 +30,6 @@ class ColorButton{
      rect(this.pos.x+canvas.width/73,this.pos.y+this.h/2-canvas.height/40,canvas.width/90,canvas.height/20,40);
      else
      rect(this.pos.x+canvas.width/70,this.pos.y+this.h/2-canvas.height/40,canvas.width/160,canvas.height/20,40);
-
 
 
 
@@ -50,8 +51,6 @@ class ColorButton{
      rect(this.pos.x,this.pos.y,canvas.width/60,this.h,40);
      imageMode(CENTER);
      image(this.arrows,canvas.width/120,this.pos.y+this.h/2,canvas.width/47,this.h/2.5);
-
-
    if(this.state && groundHeight>canvas.height/1.6){
       groundHeight-=canvas.height*0.001;
    }
@@ -61,19 +60,17 @@ class ColorButton{
    }
 
 
-
-
  }
-   cheak(p){
-     let players = p.size;
-     let playerx = p.pos.x;
-     let playery = p.pos.y;
+   cheak(){
+     let players = player.size;
+     let playerx = player.pos.x;
+     let playery = player.pos.y;
 
       if(canvas.width/60+players/2>playerx){
          if(this.pos.y-players/2<=playery && this.pos.y+this.h+players/2>=playery){
-           p.pos.x = canvas.width/60+players/2;
+           player.pos.x = canvas.width/60+players/2;
 
-           p.vel.x*=-1;
+           player.vel.x*=-1;
 
            if(playery>this.pos.y+this.h/8 && playery<this.pos.y+this.h/1.1325){
              if(!this.working){

@@ -4,15 +4,26 @@ var timesFont;
 
 
 var l=0;
-var colors = [];
 var canvasOpacity=255;
 var groundHeight;
 var playerPos = 0;
-var bloc;
+
+var skinP = new Array(7);
 
 function preload(){
+  for(let i=0;i<skinP.length;i++){
+  skinP[i] = new Array(4);
+}
+
+skinP[0][0]   = loadImage('pics/p1l.png');
+skinP[0][1]   = loadImage('pics/p1o.png');
+skinP[0][2]   = loadImage('pics/p1r.png');
+skinP[1][0]   = loadImage('pics/p2l.png');
+skinP[1][1]   = loadImage('pics/p2o.png');
+skinP[1][2]   = loadImage('pics/p2r.png');
+skinP[2][0]   = loadImage('pics/p3o.png');
+skinP[3][0]   = loadImage('pics/player7l.png');
   timesFont = loadFont('fonts/goodx.ttf');
-  bloc = loadImage('pics/block.png');
 }
 
 function setup(){
