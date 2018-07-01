@@ -2,13 +2,8 @@ class Player{
 
    constructor(){
        this.pos = createVector(canvas.width/2,canvas.height/1.5);
-<<<<<<< HEAD
        this.size = canvas.height/8;
        this.vel = createVector(0,0.3);
-=======
-       this.size = canvas.height/10;
-       this.vel = createVector(0,0);
->>>>>>> 303ff3b58b73584f6d2a3a3f0217f185f5c127f5
        this.acc = createVector(0,0);
        this.air=1;
        this.on = false;
@@ -46,19 +41,6 @@ class Player{
          playerPosY=player.pos.y-canvas.height/3+player.vel.y;
      } else playerPosY=0;
 
-<<<<<<< HEAD
-=======
-          if(players[0].pos.x>players[1].pos.x){
-              if(players[0].pos.x>canvas.width/2){
-            playerPos=players[0].pos.x-canvas.width/2;
-              }else playerPos=0;
-          }
-          if(players[1].pos.x>players[0].pos.x){
-              if(players[1].pos.x>canvas.width/2){
-            playerPos=players[1].pos.x-canvas.width/2;
-              }else playerPos=0;
-          }
->>>>>>> 303ff3b58b73584f6d2a3a3f0217f185f5c127f5
    }
 
    applyForce(v){
