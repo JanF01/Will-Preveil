@@ -30,7 +30,7 @@ function setup(){
   canvas = createCanvas(windowWidth,windowHeight);
 
   background(8, 8.6, 14);
-  frameRate(90);
+  frameRate(60);
   textFont(timesFont);
 
 
