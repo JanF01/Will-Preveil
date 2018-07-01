@@ -1,145 +1,132 @@
-var players = [];
+var player;
+var skins = [];
+var platforms = [];
 var colorButton;
-var blocks = [];
+var groundHeight;
+var playerPos=0,playerPosY=0;
 
-function startGame(){
-  colors[0] = new Color(canvas.width/6,color(0, 165, 145),1);
-  colors[1] = new Color(canvas.width/6*2,color(236, 219, 84),2);
-  colors[2] = new Color(canvas.width/6*3,color(233, 75, 60),3);
-  colors[3] = new Color(canvas.width/6*4,color(191, 214, 65),4);
-  colors[4] = new Color(canvas.width/6*5,color(192, 171, 142),5);
-  players[0] = new Player();
-  players[1] = new Player();
-  colorButton = new ColorButton();
-  blocks[0] = new Block(canvas.width*0.8,canvas.height/1.4,1);
-  blocks[1] = new Block(canvas.width*1.15,canvas.height/1.65,2);
-  blocks[2] = new Block(canvas.width*1.4,canvas.height/1.9,3);
-}
+function startGame() {
+  beginGame = true;
+  
+  createSkins(skinP.length,skinP,2,0.64);
+  createPlayer();
+  createButton();
 
-function showColors(){
-  if(players[0].pos.y<canvas.height/2 || players[1].pos.y<canvas.height/2){
-   for(let i=0;i<colors.length;i++){
-      colors[i].draw();
-      colors[i].cheak(players[0]);
-     colors[i].cheak(players[1]);
-    }
+
+  for(let i=0;i<10;i++){
+  createPlatform( canvas.width * (1.1+i/5), canvas.height / (1.9+i/3),canvas.width/10,color(250,190,10));
+   }
+
+  for(let i=0;i<10;i++){
+  createPlatform( canvas.width * (3+i/4.5),- canvas.height*(i/7),canvas.width/10,color(200,100,10));
   }
-  else{
-      for(let i=0;i<colors.length;i++){
-    colors[i].draw();
-     }
-  }
+
 
 }
 
-function play(){
-  noStroke();
-  background(16,17,25);
+
+function showSkins() {
+  if (player.pos.y > canvas.height / 3 || player.pos.y<0) {
+      skins.forEach((skin)=>{skin.draw();})
+  } else {
+      skins.forEach((skin)=>{
+        skin.draw();
+        skin.cheak();
+      })
+  }
+
+}
+
+function drawPlatforms(){
+    platforms.forEach((plt)=>{
+        plt.changePos();
+        plt.draw();
+        plt.cheak();
+
+
+    });
+}
+
+function play() {
+  $('#pass').css('display', 'none');
+  background(17, 17, 25);
   fill(255);
-  rect(0,groundHeight,canvas.width,canvas.height/500);
-  textSize(canvas.height/30);
-  text("LEVEL:  "+l,canvas.width/10,canvas.height/1.055);
+  textSize(canvas.height / 30);
+  text("LEVEL:  " + l, canvas.width / 10, canvas.height / 1.055);
 
 
-
- for(let i=0;i<players.length;i++){
-  players[i].move();
-  players[i].corners();
-}
-
-
+        player.move();
+        player.corners();
 
   push();
-  translate(-playerPos,0);
-  
-  textSize(canvas.height/20)
+  translate(-playerPos,-playerPosY);
+  rect(playerPos, groundHeight, canvas.width, canvas.height / 500);
+
+
+  textSize(canvas.height / 25)
   stroke(255);
-  strokeWeight(2);
-  fill(190,200,255);
-  text("CLICK ON A PLATFORM TO MOVE IT",canvas.width*1.05,canvas.height/7);
-  showColors();
+  fill(12, 20, 37);
+  text("CLICK ON A PLATFORM TO MOVE IT", canvas.width * 1.2, canvas.height / 8);
 
-  if(players[0].pos.x<canvas.width/10) colorButton.cheak(players[0]);
-    if(players[1].pos.x<canvas.width/10) colorButton.cheak(players[1]);
 
-  colorButton.draw();
+  showSkins();
+  drawPlatforms();
 
-  for(let i=0;i<blocks.length;i++){
-blocks[i].draw();
-for(let j=0;j<players.length;j++){
-blocks[i].cheak(players[j]);
-blocks[i].changePos(players[j]);
-}
-}
+  player.draw();
+  if (player.pos.x < canvas.width / 20) {
+    colorButton.cheak();
+  }
+    colorButton.draw();
 
-     players[0].draw();
-      players[1].draw();
+  if (player.vel.y == 0 && (player.air == 1 || player.air == 2 || player.air == 3)) {
+    player.vel.x = 0;
+    player.air = 0;
+  }
 
-        let gravity = createVector(0,canvas.height/1000);
-        if(!players[0].on || players[0].air>0) players[0].applyForce(gravity);
-        if(!players[1].on || players[1].air>0) players[1].applyForce(gravity);
+  if (!player.on || player.air > 0) {
+    let gravity = createVector(0, canvas.height / 1000);
+    player.applyForce(gravity);
+  }
 
-        if(players[0].air!=3){
-      if(keyIsDown(LEFT_ARROW)){
-        players[0].vel.x=-canvas.width/300;
-      }
-      if(keyIsDown(RIGHT_ARROW)){
-        players[0].vel.x=canvas.width/300;
-      }
+
+    if (keyIsDown('65') || keyIsDown(LEFT_ARROW)) {
+      player.vel.x = -player.speed;
     }
-        if(players[1].air!=3){
-   if(keyIsDown('65')){
-        players[1].vel.x=-canvas.width/300;
-      }
-      if(keyIsDown('68')){
-        players[1].vel.x=canvas.width/300;
-      }
-        }
-
-    pop();
- for(let i=0;i<players.length;i++){
-  if(players[i].vel.y==0 && (players[i].air==1 || players[i].air==2 || players[i].air==3)){
-     players[i].vel.x=0;
-     players[i].air=0;
-  }
-}
-
-}
-
-
-function keyPressed(e){
-
-  if(e.keyCode == '38'){
-    players[0].jump();
-  }
-  if(e.keyCode == '87'){
-    players[1].jump();
-  }
-  if(e.keyCode == '40'){
-    players[0].fall();
-  }
-   if(e.keyCode == '83'){
-    players[1].fall();
-  }
-
-}
-function keyReleased(e){
-
-    if(players[0].vel.y==0){
-    if(e.keyCode=='37' || e.keyCode== '39'){
-      players[0].stopX();
+    if (keyIsDown('68') || keyIsDown(RIGHT_ARROW)) {
+      player.vel.x = player.speed;
     }
+
+
+
+  pop();
+
+
+}
+
+
+function keyPressed(e) {
+
+  if (e.keyCode == '87' || e.keyCode == '38' || e.keyCode == '32') {
+    player.jump();
   }
-     if(players[1].vel.y==0){
-    if(e.keyCode== '65' || e.keyCode == '68'){
-      players[1].stopX();
+  if (!player.on) {
+    if (e.keyCode == '83' || e.keyCode == '40') {
+      player.fall();
     }
   }
 
 }
 
-function mousePressed(){
-  for(let i=0;i<blocks.length;i++){
-     blocks[i].bind();
+function keyReleased(e) {
+
+  if (player.vel.y == 0) {
+    if (e.keyCode == '65' || e.keyCode == '37' || e.keyCode == '68' || e.keyCode == '39') {
+      player.stopX();
+    }
   }
+
+}
+
+function mousePressed() {
+  for (let i=0;i<platforms.length;i++) platforms[i].bind();
 }
