@@ -48,7 +48,6 @@ function drawPlatforms(){
 }
 
 function play() {
-  $('#pass').css('display', 'none');
   background(17, 17, 25);
   fill(255);
   textSize(canvas.height / 30);
