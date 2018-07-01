@@ -14,8 +14,14 @@ class ColorButton{
 
      textSize(canvas.height/37)
      stroke(255);
+<<<<<<< HEAD:scripts/objects/skinsButton.js
      fill(12,20,37);
      let h = canvas.height/25;
+=======
+      strokeWeight(2);
+     fill(190,200,255);
+     let h = canvas.height/7;
+>>>>>>> 303ff3b58b73584f6d2a3a3f0217f185f5c127f5:scripts/objects/colorsButton.js
      textAlign(CENTER);
      for(let i=0;i<this.text.length;i++){
         text(this.text[i],canvas.height/50,h);
@@ -56,11 +62,13 @@ class ColorButton{
    }
    else if(!this.state && groundHeight<canvas.height/1.125){
       groundHeight+=canvas.height*0.001;
-      player.pos.y = groundHeight-player.size/2;
+      players[0].pos.y = groundHeight-players[0].size/2;
+      players[1].pos.y = groundHeight-players[1].size/2;
    }
 
 
  }
+<<<<<<< HEAD:scripts/objects/skinsButton.js
    cheak(){
      let players = player.size;
      let playerx = player.pos.x;
@@ -69,6 +77,16 @@ class ColorButton{
       if(canvas.width/60+players/2>playerx){
          if(this.pos.y-players/2<=playery && this.pos.y+this.h+players/2>=playery){
            player.pos.x = canvas.width/60+players/2;
+=======
+   cheak(p){
+     let playersi = p.size;
+     let playerx = p.pos.x;
+     let playery = p.pos.y;
+
+      if(canvas.width/60+playersi/2>playerx){
+         if(this.pos.y-playersi/2<=playery && this.pos.y+this.h+playersi/2>=playery){
+           p.pos.x = canvas.width/60+playersi/2;
+>>>>>>> 303ff3b58b73584f6d2a3a3f0217f185f5c127f5:scripts/objects/colorsButton.js
 
            player.vel.x*=-1;
 
