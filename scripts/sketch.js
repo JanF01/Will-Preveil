@@ -8,7 +8,7 @@ var canvasOpacity=255;
 var groundHeight;
 var playerPos = 0;
 
-var skinP = new Array(4);
+var skinP = new Array(3);
 
 function preload(){
   for(let i=0;i<skinP.length;i++){
@@ -21,8 +21,9 @@ skinP[0][2]   = loadImage('pics/p1r.png');
 skinP[1][0]   = loadImage('pics/p2l.png');
 skinP[1][1]   = loadImage('pics/p2o.png');
 skinP[1][2]   = loadImage('pics/p2r.png');
-skinP[2][0]   = loadImage('pics/p3o.png');
-skinP[3][0]   = loadImage('pics/player7l.png');
+skinP[2][0]   = loadImage('pics/p3l.png');
+skinP[2][1]   = loadImage('pics/p3o.png');
+skinP[2][2]   = loadImage('pics/p3r.png');
   timesFont = loadFont('fonts/goodx.ttf');
 }
 
