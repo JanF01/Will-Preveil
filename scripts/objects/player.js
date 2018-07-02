@@ -20,12 +20,8 @@ class Player{
        else if(this.vel.x<0)this.direction=0;
        else this.direction = 2;
 
-    if(this.look==0 || this.look==1){
+
      image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size,this.size);
-    }
-     else{
-     image(this.grafic[this.look][0],this.pos.x,this.pos.y,this.size,this.size);
-      }
    }
    move(){
      this.vel.add(this.acc);
