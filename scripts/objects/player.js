@@ -21,10 +21,10 @@ class Player{
        else this.direction = 2;
 
     if(this.look==0 || this.look==1){
-     image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size,this.size*1.03);
+     image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size,this.size);
     }
      else{
-     image(this.grafic[this.look][0],this.pos.x,this.pos.y,this.size,this.size*1.03);
+     image(this.grafic[this.look][0],this.pos.x,this.pos.y,this.size,this.size);
       }
    }
    move(){
