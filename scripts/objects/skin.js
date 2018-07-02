@@ -1,6 +1,6 @@
 class Skin{
 
-   constructor(skin,x,i,padd){
+   constructor(skin,x,i){
       this.pos = createVector(x,canvas.height/4);
       this.s = canvas.height/10;
       this.i = i;
