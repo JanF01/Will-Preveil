@@ -8,7 +8,7 @@ var canvasOpacity=255;
 var groundHeight;
 var playerPos = 0;
 
-var skinP = new Array(7);
+var skinP = new Array(4);
 
 function preload(){
   for(let i=0;i<skinP.length;i++){
