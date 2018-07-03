@@ -11,7 +11,7 @@ class Player{
        this.look = 0;
        this.direction=0;
        this.prop = 1;
-       this.speed = canvas.height/150;
+       this.speed = canvas.height/130;
        this.cMode = false;
        this.cSkin = loadImage('pics/cmode.png');
    }
@@ -21,7 +21,7 @@ class Player{
        if(this.vel.x==0)this.direction=1;
        else if(this.vel.x<0)this.direction=0;
        else this.direction = 2;
-       
+
        if(this.cMode){
                image(this.cSkin,this.pos.x,this.pos.y,this.size*1.4,this.size*1.4);
               }
