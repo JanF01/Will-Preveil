@@ -9,8 +9,8 @@ class Player{
        this.on = false;
        this.grafic = skinP;
        this.look = 0;
-       this.padd = 1;
        this.direction=0;
+       this.prop = 1;
        this.speed = canvas.height/150;
    }
 
@@ -20,8 +20,8 @@ class Player{
        else if(this.vel.x<0)this.direction=0;
        else this.direction = 2;
 
-
-     image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size,this.size);
+     image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size/this.prop,this.size);
+    
    }
    move(){
      this.vel.add(this.acc);
@@ -77,7 +77,7 @@ class Player{
 
   fall(){
     let v5 = createVector(0,canvas.height/50);
-    this.applyForce(v5);
+    player.applyForce(v5);
   }
 
 

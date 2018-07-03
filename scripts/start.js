@@ -6,19 +6,18 @@ var groundHeight;
 var playerPos=0,playerPosY=0;
 
 function startGame() {
-  beginGame = true;
   
-  createSkins(skinP.length,skinP);
+  createSkins(skinP.length,skinP,2,0.64);
   createPlayer();
   createButton();
 
 
   for(let i=0;i<10;i++){
-  createPlatform( canvas.width * (1.1+i/5), canvas.height / (1.9+i/3),canvas.width/10,color(250,190,10));
+  createPlatform( canvas.width * (1.1+i/5), canvas.height / (1.9+i/3),canvas.height/4.5,120,10,190);
    }
 
   for(let i=0;i<10;i++){
-  createPlatform( canvas.width * (3+i/4.5),- canvas.height*(i/7),canvas.width/10,color(200,100,10));
+  createPlatform( canvas.width * (3+i/4.5),- canvas.height*(i/7),canvas.height/4.5,100,10,200);
   }
 
 
@@ -57,19 +56,19 @@ function play() {
         player.move();
         player.corners();
 
+
   push();
   translate(-playerPos,-playerPosY);
+
   rect(playerPos, groundHeight, canvas.width, canvas.height / 500);
-
-
   textSize(canvas.height / 25)
   stroke(255);
   fill(12, 20, 37);
   text("CLICK ON A PLATFORM TO MOVE IT", canvas.width * 1.2, canvas.height / 8);
+  text("DOUBLE CLICK TO CHANGE SIZE OR COLOR", canvas.width * 1.2, canvas.height / 6);
 
-
-  showSkins();
   drawPlatforms();
+  showSkins();
 
   player.draw();
   if (player.pos.x < canvas.width / 20) {
@@ -127,5 +126,14 @@ function keyReleased(e) {
 }
 
 function mousePressed() {
-  for (let i=0;i<platforms.length;i++) platforms[i].bind();
+  platforms.forEach((plt)=>{
+      plt.bind();
+  });
+}
+
+function mouseDragged(){
+  platforms.forEach((plt)=>{
+    plt.reSize();
+    plt.changeColor();
+     });
 }

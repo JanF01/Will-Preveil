@@ -9,7 +9,7 @@ let createSkins    = (n,arr) => {
 
 let createPlayer   = () => player = new Player();
 
-let createPlatform = (x,y, w,c) => {
-  plat = new Platform(x,y, w,c);
+let createPlatform = (x,y, w,r,g,b) => {
+  plat = new Platform(x,y, w,r,g,b);
   platforms.push(plat);
 }

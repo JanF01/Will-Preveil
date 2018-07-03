@@ -16,7 +16,6 @@ class ColorButton{
      stroke(255);
      fill(12,20,37);
      let h = canvas.height/25;
-
      textAlign(CENTER);
      for(let i=0;i<this.text.length;i++){
         text(this.text[i],canvas.height/50,h);
@@ -57,11 +56,11 @@ class ColorButton{
    }
    else if(!this.state && groundHeight<canvas.height/1.125){
       groundHeight+=canvas.height*0.001;
-      player.pos.y = groundHeight-player.size/2;
+      player.air = 1;
    }
 
 
-  }
+ }
    cheak(){
      let players = player.size;
      let playerx = player.pos.x;
@@ -70,8 +69,6 @@ class ColorButton{
       if(canvas.width/60+players/2>playerx){
          if(this.pos.y-players/2<=playery && this.pos.y+this.h+players/2>=playery){
            player.pos.x = canvas.width/60+players/2;
-
-  
 
            player.vel.x*=-1;
 
