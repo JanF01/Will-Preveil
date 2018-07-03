@@ -12,6 +12,8 @@ class Player{
        this.direction=0;
        this.prop = 1;
        this.speed = canvas.height/150;
+       this.cMode = false;
+       this.cSkin = loadImage('pics/cmode.png');
    }
 
    draw(){
@@ -19,9 +21,14 @@ class Player{
        if(this.vel.x==0)this.direction=1;
        else if(this.vel.x<0)this.direction=0;
        else this.direction = 2;
-
+       
+       if(this.cMode){
+               image(this.cSkin,this.pos.x,this.pos.y,this.size*1.4,this.size*1.4);
+              }
+              else{
      image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size/this.prop,this.size);
-    
+   }
+
    }
    move(){
      this.vel.add(this.acc);

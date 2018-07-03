@@ -6,7 +6,7 @@ var groundHeight;
 var playerPos=0,playerPosY=0;
 
 function startGame() {
-  
+
   createSkins(skinP.length,skinP,2,0.64);
   createPlayer();
   createButton();
@@ -30,20 +30,26 @@ function showSkins() {
   } else {
       skins.forEach((skin)=>{
         skin.draw();
-        skin.cheak();
+        if(!player.cMode)skin.cheak();
       })
   }
 
 }
 
 function drawPlatforms(){
+  if(player.cMode){
+    platforms.forEach((plt)=>{
+      plt.changePos();
+      plt.draw();
+  });
+  }
+  else{
     platforms.forEach((plt)=>{
         plt.changePos();
         plt.draw();
         plt.cheak();
-
-
     });
+  }
 }
 
 function play() {
@@ -62,10 +68,11 @@ function play() {
 
   rect(playerPos, groundHeight, canvas.width, canvas.height / 500);
   textSize(canvas.height / 25)
-  stroke(255);
-  fill(12, 20, 37);
-  text("CLICK ON A PLATFORM TO MOVE IT", canvas.width * 1.2, canvas.height / 8);
-  text("DOUBLE CLICK TO CHANGE SIZE OR COLOR", canvas.width * 1.2, canvas.height / 6);
+  noStroke();
+  fill(255,200);
+  text("CLICK ON A PLATFORM TO MOVE IT", canvas.width * 1.2, canvas.height / 12);
+  text("DOUBLE CLICK TO CHANGE SIZE OR COLOR", canvas.width * 1.2, canvas.height / 6.8);
+  text("CLICK \"G\" TO TURN ON THE CREATIVE MODE", canvas.width * 1.2, canvas.height / 4.5);
 
   drawPlatforms();
   showSkins();
@@ -81,18 +88,25 @@ function play() {
     player.air = 0;
   }
 
-  if (!player.on || player.air > 0) {
+  if ((!player.on || player.air > 0) && !player.cMode) {
     let gravity = createVector(0, canvas.height / 1000);
     player.applyForce(gravity);
   }
 
 
     if (keyIsDown('65') || keyIsDown(LEFT_ARROW)) {
-      player.vel.x = -player.speed;
+      player.cMode ?  player.pos.x -= player.speed*1.7 : player.vel.x = -player.speed;
     }
     if (keyIsDown('68') || keyIsDown(RIGHT_ARROW)) {
-      player.vel.x = player.speed;
+      player.cMode ?  player.pos.x += player.speed*1.7 : player.vel.x = player.speed;
     }
+    if(keyIsDown('87') || keyIsDown('38')){
+      if(player.cMode) player.pos.y -= player.speed*1.4;
+    }
+    if(keyIsDown('83') || keyIsDown('40')){
+      if(player.cMode) player.pos.y += player.speed*1.4;
+    }
+
 
 
 
@@ -104,6 +118,8 @@ function play() {
 
 function keyPressed(e) {
 
+  if(!player.cMode){
+
   if (e.keyCode == '87' || e.keyCode == '38' || e.keyCode == '32') {
     player.jump();
   }
@@ -111,6 +127,12 @@ function keyPressed(e) {
     if (e.keyCode == '83' || e.keyCode == '40') {
       player.fall();
     }
+  }
+
+}
+  if(e.keyCode=='71'){
+    console.log('lol');
+     player.cMode = !player.cMode;
   }
 
 }

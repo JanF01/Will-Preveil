@@ -137,11 +137,12 @@ class Platform {
   }
 
   bind() {
-    if (dist(mouseX, mouseY, this.pos.x - playerPos, this.pos.y - playerPosY) < this.h/2){
+    if (abs((this.pos.x- playerPos)-mouseX) < this.w/2){
+     if(abs((this.pos.y - playerPosY)-mouseY)< this.h/2){
        if(this.changingPos==0){
           this.changingPos=1;
           this.doubleClick=true;
-          setTimeout(()=>{this.doubleClick=false},200);
+          setTimeout(()=>{this.doubleClick=false},250);
     }
     else if(this.changingPos==1){
         this.doubleClick ? this.changingPos=2 : this.changingPos=0;
@@ -149,6 +150,7 @@ class Platform {
     else this.changingPos=0;
 
   }
+}
 }
   changePos() {
 
