@@ -16,7 +16,7 @@ function preload(){
   for(let i=0;i<skinP.length;i++){
     skinP[i] = new Array(3);
   }
-  
+
   skinP[0][0]   = loadImage('pics/p1l.png');
   skinP[0][1]   = loadImage('pics/p1o.png');
   skinP[0][2]   = loadImage('pics/p1r.png');
@@ -50,8 +50,11 @@ function setup(){
 
   groundHeight = canvas.height/1.125;
 
+  startGame();
+
 }
 
 function draw(){
+
  play();
 }
