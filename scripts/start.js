@@ -7,17 +7,17 @@ var playerPos=0,playerPosY=0;
 
 function startGame() {
 
-  createSkins(skinP.length,skinP,2,0.64);
+  createSkins(skinP.length,skinP);
   createPlayer();
   createButton();
 
 
   for(let i=0;i<10;i++){
-  createPlatform( canvas.width * (1.1+i/5), canvas.height / (1.9+i/3),canvas.height/4.5,120,10,190);
+  createPlatform( canvas.width * (1.1+i/5), canvas.height / (1.9+i/3),canvas.height/4.5,canvas.height/18,120,10,190);
    }
 
   for(let i=0;i<10;i++){
-  createPlatform( canvas.width * (3+i/4.5),- canvas.height*(i/7),canvas.height/4.5,100,10,200);
+  createPlatform( canvas.width * (3+i/4.5),- canvas.height*(i/7),canvas.height/4.5,canvas.height/18,100,10,200);
   }
 
 
@@ -112,50 +112,63 @@ function play() {
 
   pop();
 
-
+  menu();
 }
 
+unction keyPressed(e) {
 
-function keyPressed(e) {
+    if(!player.cMode){
 
-  if(!player.cMode){
-
-  if (e.keyCode == '87' || e.keyCode == '38' || e.keyCode == '32') {
-    player.jump();
-  }
-  if (!player.on) {
-    if (e.keyCode == '83' || e.keyCode == '40') {
-      player.fall();
+    if (e.keyCode == '87' || e.keyCode == '38' || e.keyCode == '32') {
+      player.jump();
     }
-  }
-
-}
-  if(e.keyCode=='71'){
-    console.log('lol');
-     player.cMode = !player.cMode;
-  }
-
-}
-
-function keyReleased(e) {
-
-  if (player.vel.y == 0) {
-    if (e.keyCode == '65' || e.keyCode == '37' || e.keyCode == '68' || e.keyCode == '39') {
-      player.stopX();
+    if (!player.on) {
+      if (e.keyCode == '83' || e.keyCode == '40') {
+        player.fall();
+      }
     }
+
+  }
+    if(e.keyCode=='71'){
+       menuCreativeMode();
+    }
+
   }
 
-}
+  function keyReleased(e) {
 
-function mousePressed() {
-  platforms.forEach((plt)=>{
-      plt.bind();
-  });
-}
+    if (player.vel.y == 0) {
+      if (e.keyCode == '65' || e.keyCode == '37' || e.keyCode == '68' || e.keyCode == '39') {
+        player.stopX();
+      }
+    }
 
-function mouseDragged(){
-  platforms.forEach((plt)=>{
-    plt.reSize();
-    plt.changeColor();
-     });
-}
+  }
+
+  function mousePressed() {
+   for(let i=platforms.length-1;i>=0;i--){
+       if(platforms[i].bind()) break;
+    }
+
+    if(mouseX<canvas.width*0.95+canvas.height/16 && mouseX>canvas.width*0.95){
+       if(mouseY>canvas.height/8.15 && mouseY<canvas.height/8.15+canvas.height/17){
+          menuCreativeMode();
+       }
+       else if(mouseY>canvas.height*0.03 && mouseY<canvas.height*0.03+canvas.height/17){
+          menuCreatePlatform();
+       }
+    }
+    else if(mouseX<canvas.width*0.9+canvas.height/16 && mouseX>canvas.width*0.9){
+      if(mouseY>canvas.height*0.03 && mouseY<canvas.height*0.03+canvas.height/17){
+        menuReplicatePlatform();
+      }
+    }
+
+  }
+
+  function mouseDragged(){
+    platforms.forEach((plt)=>{
+      plt.reSize();
+      plt.changeColor();
+       });
+  }

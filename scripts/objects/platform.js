@@ -1,13 +1,13 @@
 class Platform {
 
-  constructor(/*g,*/x, y, w, r,g,b) {
+  constructor(/*g,*/x, y, w, h,r,g,b) {
     this.pos = createVector(x, y);
 
     this.changingPos = 0;
     this.r=r;this.g=g;this.b=b;
 
     //this.look = g;
-    this.h =  canvas.height/18;//this.look.height;
+    this.h =  h;//this.look.height;
     this.w =  w;//this.look.width;
 
     this.doubleClick = false;
@@ -29,12 +29,11 @@ class Platform {
   }
 
   draw() {
-  /* imageMode(CENTER);
+  /*  imageMode(CENTER);
     image(this.look, this.pos.x, this.pos.y);*/
     noStroke();
     fill(this.r,this.g,this.b);
     rectMode(CENTER);
-
     if(this.h>0 && this.w>0){
     rect(this.pos.x,this.pos.y,this.w,this.h,20);
     }
@@ -95,7 +94,7 @@ class Platform {
 
       if (abs(player.pos.y - this.pos.y) <= this.h / 2 + player.size / 2) {
 
-        if (player.pos.y - this.pos.y < -this.h / 3 && abs(player.pos.x - this.pos.x) < this.w / 2) {
+        if (player.pos.y - this.pos.y < -this.h / 3 && abs(player.pos.x - this.pos.x) <= this.w / 2) {
           player.pos.y = this.pos.y - player.size / 2 - this.h / 2;
           player.vel.y = 0;
           player.on = true;
@@ -106,15 +105,13 @@ class Platform {
         }
 
 
-        else if (player.pos.x <= this.pos.x - this.w  / 2 - playerWidth / 2 + player.vel.x
-              && player.pos.y - this.pos.y > -player.size/2 ) {
+        else if (player.pos.x <= this.pos.x - this.w  / 2 - playerWidth / 2 + player.vel.x) {
           player.pos.x = this.pos.x - this.w  / 2 - playerWidth / 2;
           player.vel.x *= -0.5;
           player.on = false;
         }
 
-        else if (player.pos.x >= this.pos.x + this.w  / 2 + playerWidth / 2 + player.vel.x
-          && player.pos.y - this.pos.y > -player.size/2 ) {
+        else if (player.pos.x >= this.pos.x + this.w  / 2 + playerWidth / 2 + player.vel.x) {
           player.vel.x *= -0.5;
           player.pos.x = this.pos.x + this.w  / 2 + playerWidth / 2;
           player.on = false;
@@ -126,7 +123,11 @@ class Platform {
           player.air=3;
         }
 
-        else  player.vel.y*=-1;
+        else if(player.pos.y>this.pos.y)  player.vel.y*=-1;
+
+        else player.vel.y*=-0.5;
+
+
 
 
       }
@@ -138,16 +139,28 @@ class Platform {
 
   bind() {
     if (abs((this.pos.x- playerPos)-mouseX) < this.w/2){
-     if(abs((this.pos.y - playerPosY)-mouseY)< this.h/2){
+      if(abs((this.pos.y - playerPosY)-mouseY)< this.h/2){
+
        if(this.changingPos==0){
+         if(!player.holding){
           this.changingPos=1;
+          player.holding=true;
           this.doubleClick=true;
           setTimeout(()=>{this.doubleClick=false},250);
+          return true;
+         }
     }
+
     else if(this.changingPos==1){
-        this.doubleClick ? this.changingPos=2 : this.changingPos=0;
+        if(this.doubleClick){
+           this.changingPos=2
+        }else{
+          this.changingPos=0;
+        }
+        player.holding=false;
+        return true;
     }
-    else this.changingPos=0;
+    else {this.changingPos=0;  return true;}
 
   }
 }

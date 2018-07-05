@@ -11,6 +11,8 @@ var l=0;
 
 var skinP = new Array(3);
 var arrows = new Array(4);
+var cSkin;
+var block;
 
 function preload(){
   for(let i=0;i<skinP.length;i++){
@@ -35,7 +37,8 @@ function preload(){
   arrows[2]     = loadImage('pics/arrowbottom.png');
   arrows[3]     = loadImage('pics/arrowleft.png');
 
-
+  cSkin = loadImage('pics/cmode.png');
+  block = loadImage('pics/block.png');
 
   timesFont     = loadFont('fonts/goodx.ttf');
 }

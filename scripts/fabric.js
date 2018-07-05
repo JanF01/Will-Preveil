@@ -1,4 +1,3 @@
-
 let createButton   = () => colorButton = new ColorButton();
 
 let createSkins    = (n,arr) => {
@@ -9,7 +8,7 @@ let createSkins    = (n,arr) => {
 
 let createPlayer   = () => player = new Player();
 
-let createPlatform = (x,y, w,r,g,b) => {
-  plat = new Platform(x,y, w,r,g,b);
+let createPlatform = (x,y, w,h,r,g,b) => {
+  plat = new Platform(x,y, w,h,r,g,b);
   platforms.push(plat);
 }

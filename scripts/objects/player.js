@@ -11,9 +11,10 @@ class Player{
        this.look = 0;
        this.direction=0;
        this.prop = 1;
-       this.speed = canvas.height/130;
+       this.speed = canvas.height/125;
        this.cMode = false;
-       this.cSkin = loadImage('pics/cmode.png');
+       this.cSkin = cSkin;
+       this.holding= false;
    }
 
    draw(){
@@ -22,13 +23,16 @@ class Player{
        else if(this.vel.x<0)this.direction=0;
        else this.direction = 2;
 
-       if(this.cMode){
-               image(this.cSkin,this.pos.x,this.pos.y,this.size*1.4,this.size*1.4);
-              }
-              else{
-     image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size/this.prop,this.size);
-   }
 
+       if(this.cMode){
+        image(this.cSkin,this.pos.x,this.pos.y,this.size*1.4,this.size*1.4);
+       }
+    else if(this.look==0 || this.look==1 || this.look==2){
+     image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size/this.prop,this.size);
+    }
+     else{
+     image(this.grafic[this.look][0],this.pos.x,this.pos.y,this.size/this.prop,this.size);
+      }
    }
    move(){
      this.vel.add(this.acc);
