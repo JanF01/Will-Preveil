@@ -12,9 +12,6 @@ class Player{
        this.direction=0;
        this.prop = 1;
        this.speed = canvas.height/125;
-       this.cMode = false;
-       this.cSkin = cSkin;
-       this.holding= false;
    }
 
    draw(){
@@ -24,8 +21,8 @@ class Player{
        else this.direction = 2;
 
 
-       if(this.cMode){
-        image(this.cSkin,this.pos.x,this.pos.y,this.size*1.4,this.size*1.4);
+       if(menu.cMode){
+        image(cSkin,this.pos.x,this.pos.y,this.size*1.4,this.size*1.4);
        }
     else if(this.look==0 || this.look==1 || this.look==2){
      image(this.grafic[this.look][this.direction],this.pos.x,this.pos.y,this.size/this.prop,this.size);

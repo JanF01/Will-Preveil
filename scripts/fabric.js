@@ -1,3 +1,7 @@
+
+
+let createMenu     = () => menu = new Menu();
+
 let createButton   = () => colorButton = new ColorButton();
 
 let createSkins    = (n,arr) => {
