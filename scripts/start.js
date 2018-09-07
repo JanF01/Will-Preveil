@@ -15,7 +15,7 @@ function startGame() {
   createButton();
 
   for(let i=0;i<10;i++){
-     createPlatform((canvas.width*i/5)+canvas.width),canvas.height*0.8/i,canvas.height/7,canvas.height/35,100,240,30);
+     createPlatform((canvas.width*i/5)+canvas.width,canvas.height*0.8/i,canvas.height/7,canvas.height/35,100,240,30);
 
   }
 
