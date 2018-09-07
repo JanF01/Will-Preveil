@@ -9,7 +9,6 @@ var menu;
 
 function startGame() {
 
-  createCurtains();
   createMenu();
   createSkins(skinP.length,skinP,2,0.64);
   createPlayer();
